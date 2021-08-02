@@ -1,0 +1,38 @@
+DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS teacher;
+DROP TABLE IF EXISTS course;
+DROP TABLE IF EXISTS class;
+
+CREATE TABLE student(
+  id SERIAL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  grade INT CHECK(grade >= 9 AND grade <= 12) NOT NULL,
+  birth_date DATE NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE teacher(
+  id SERIAL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  start_date DATE NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE course(
+  id SERIAL,
+  title VARCHAR(255) NOT NULL UNIQUE,
+  subject VARCHAR(255) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE class(
+  student_id SERIAL NOT NULL,
+  teacher_id SERIAL NOT NULL,
+  course_id SERIAL NOT NULL,
+  FOREIGN KEY (student_id) REFERENCES student(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (teacher_id) REFERENCES teacher(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (course_id) REFERENCES course(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
