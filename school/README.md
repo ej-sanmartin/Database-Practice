@@ -15,37 +15,21 @@ Practicing my SQL skillz.
 
 Note: Nearly all values are required and constraints are set to NOT NULL
 
-* Student
-  * id SERIAL (PK)
-  * first_name Varchar(255)
-  * last_name Varchar(255)
-  * school_year CHAR(1)
-  * birth_date DATE
-  * average_grade DECIMAL
+Student | Teacher
+------- | --------
+id SERIAL (PK) | id SERiAL (PK)
+first_name Varchar(255) | first_name Varchar(255)
+last_name Varchar(255) | last_name Varchar(255)
+school_year CHAR(1) | email Varchar(255)
+birth_date DATE | start_date DATE
+average_grade DECIMAL | ~~
 
-* Teacher
-  * id SERiAL (PK)
-  * first_name Varchar(255)
-  * last_name Varchar(255)
-  * email Varchar(255)
-  * start_date DATE
-
-* Course
-  * id SERIAL (PK)
-  * title Varchar(255)
-  * subject CHAR(1)
-
-* Class
-  * id SERIAL (PK)
-  * student_id (FK)
-  * teacher_id (FK)
-  * course_id (FK)
-
-* Grade
-  * id SERIAL (PK)
-  * student_id (FK)
-  * course_id (FK)
-  * grade DECIMAL
+Course | Class | Grade
+------ | ----- | ------
+id SERIAL (PK) | id SERIAL (PK) | id SERIAL (PK)
+title Varchar(255) | student_id (FK) | student_id (FK)
+subject CHAR(1) | course_id (FK) | course_id (FK)
+~~ | teacher_id (FK) | grade DECIMAL
 
 
 ## Notes on Character Codes
