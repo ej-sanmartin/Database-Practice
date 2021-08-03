@@ -8,7 +8,7 @@
 
 A database for keeping track of classes and which students are taking them, which teachers are teaching them, and what course is being taught.
 Also has data for students grades on a corresponding class. Queries and table creation ran successfully in SQL Fiddle with PostgreSQL.
-Practicing my SQL skills.
+Practicing my SQL skillz.
 
 
 ## Tables
