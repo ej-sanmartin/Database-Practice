@@ -18,9 +18,9 @@ CREATE TABLE student(
   id SERIAL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
-  school_year CHAR(1) NOT NULL,
+  school_year CHARACTER NOT NULL,
   birth_date DATE NOT NULL,
-  average_grade DECIMAL DEFAULT 0.0,
+  average_grade DECIMAL (5, 2) DEFAULT 0.00,
   PRIMARY KEY(id)
 );
 
@@ -46,7 +46,7 @@ CREATE TABLE teacher(
 CREATE TABLE course(
   id SERIAL,
   title VARCHAR(255) NOT NULL UNIQUE,
-  subject CHAR(1) NOT NULL,
+  subject CHARACTER NOT NULL,
   PRIMARY KEY(id)
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE class(
   course_id SERIAL NOT NULL,
   FOREIGN KEY (student_id) REFERENCES student(id) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (teacher_id) REFERENCES teacher(id) ON UPDATE CASCADE ON DELETE CASCADE,
-  FOREIGN KEY (course_id) REFERENCES course(id) ON UPDATE CASCADE ON DELETE CASCADE
+  FOREIGN KEY (course_id) REFERENCES course(id) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY(id)
 );
 
@@ -70,6 +70,7 @@ CREATE TABLE grade(
   FOREIGN KEY (class_id) REFERENCES class(id) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY(id)
 );
+
 
 /* Populates tables with mock data to test queries on */
 INSERT INTO student (first_name, last_name, school_year, birth_date)
@@ -137,7 +138,7 @@ VALUES ('Algebra I', 'M'),
        ('Digital Art', 'V');
        
 INSERT INTO class (student_id, teacher_id, course_id)
-VALUES (1, 1, 4), (1, 2, 2), (1, 5, 7), (1, 7, 10) (1, 6, 14), (1, 9, 17),
+VALUES (1, 1, 4), (1, 2, 2), (1, 5, 7), (1, 7, 10), (1, 6, 14), (1, 9, 17),
        (2, 2, 2), (2, 3, 5), (2, 4, 11), (2, 6, 14), (2, 9, 17),
        (3, 10, 3), (3, 3, 6), (3, 6, 9), (3, 11, 12), (3, 12, 14), (3, 9, 19),
        (4, 1, 4), (4, 2, 1), (4, 5, 7), (4, 4, 11), (4, 13, 15), (4, 9, 18),
