@@ -56,7 +56,7 @@ School Year Code | Subject Code
  L - Sophomore | H - History
  J - Junior | E - English
  S - Senior | S - Science
-  | V - Visual Arts 
+ - | V - Visual Arts 
   
 
 ## Improvements
