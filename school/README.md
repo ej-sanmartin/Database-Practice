@@ -24,6 +24,8 @@ school_year CHAR(1) | email Varchar(255)
 birth_date DATE | start_date DATE
 average_grade DECIMAL | ~~
 
+
+
 Course | Class | Grade
 ------ | ----- | ------
 id SERIAL (PK) | id SERIAL (PK) | id SERIAL (PK)
