@@ -50,19 +50,14 @@ Note: Nearly all values are required and constraints are set to NOT NULL
 
 ## Notes on Character Codes
 
-* School Year Code
-  * F - Freshman
-  * L - Sophomore
-  * J - Junior
-  * S - Senior
- 
-* Subject Code
-  * M - Math
-  * H - History
-  * E - English
-  * S - Science
-  * V - Visual Arts
-
+School Year Code | Subject Code
+----------------- | ---------------
+ F - Freshman | M - Math
+ L - Sophomore | H - History
+ J - Junior | E - English
+ S - Senior | S - Science
+  | V - Visual Arts 
+  
 
 ## Improvements
 
