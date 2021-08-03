@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS teacher;
 DROP TABLE IF EXISTS course;
 DROP TABLE IF EXISTS class;
+DROP TABLE IF EXISTS grade;
 
 /* Creates Student, Teacher, Course, and Class Table */
 /*
