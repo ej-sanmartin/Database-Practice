@@ -47,6 +47,7 @@ Note: Nearly all values are required and constraints are set to NOT NULL
  * L - Sophomore
  * J - Junior
  * S - Senior
+ 
 * Subject Code
  * M - Math
  * H - History
