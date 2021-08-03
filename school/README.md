@@ -1,5 +1,9 @@
 # School Database
 
+
+![High School DB Schema](high_school_db_schema.png)
+
+
 ## Description
 
 A database for keeping track of classes and which students are taking them, which teachers are teaching them, and what course is being taught.
