@@ -7,7 +7,8 @@
 ## Description
 
 A database for keeping track of classes and which students are taking them, which teachers are teaching them, and what course is being taught.
-Queries and table creation ran successfully in SQL Fiddle with PostgreSQL. Practicing my SQL skills.
+Also has data for students grades on a corresponding class. Queries and table creation ran successfully in SQL Fiddle with PostgreSQL.
+Practicing my SQL skills.
 
 
 ## Tables
@@ -18,8 +19,9 @@ Note: Nearly all values are required and constraints are set to NOT NULL
   * id SERIAL (PK)
   * first_name Varchar(255)
   * last_name Varchar(255)
-  * grade INT
+  * school_year CHAR(1)
   * birth_date DATE
+  * average_grade DECIMAL
 
 * Teacher
   * id SERiAL (PK)
@@ -31,13 +33,19 @@ Note: Nearly all values are required and constraints are set to NOT NULL
 * Course
   * id SERIAL (PK)
   * title Varchar(255)
-  * subject Varchar(255)
+  * subject CHAR(1)
 
 * Class
   * id SERIAL (PK)
   * student_id (FK)
   * teacher_id (FK)
   * course_id (FK)
+
+* Grade
+  * id SERIAL (PK)
+  * student_id (FK)
+  * course_id (FK)
+  * grade DECIMAL
 
 
 ## Notes on Character Codes
