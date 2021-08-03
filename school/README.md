@@ -40,10 +40,24 @@ Note: Nearly all values are required and constraints are set to NOT NULL
   * course_id (FK)
 
 
+## Notes on Character Codes
+
+* School Year Code
+ * F - Freshman
+ * L - Sophomore
+ * J - Junior
+ * S - Senior
+* Subject Code
+ * M - Math
+ * H - History
+ * E - English
+ * S - Science
+ * V - Visual Arts
+
+
 ## Improvements
 
 * Slight optimization, make first_name and last_name columns not have Varchar set to 255, unlikely name would fill all of that space
-* Add grade columns
 * connect to a frontend and backend site
   * Backend handles communicating with database, frontend would be a dashboard to add and remove items from various tables
 
