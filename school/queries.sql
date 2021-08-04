@@ -58,3 +58,11 @@ SELECT
 FROM class_information
 GROUP BY "Course Subject"
 ORDER BY (AVG("Student Grade")) DESC;
+
+/* Select bottom 5 teachers who's students had the lowest average scores */
+SELECT
+  teacher AS "Teacher",
+  CAST(AVG("Student Grade") AS DECIMAL(5, 2)) AS "Average Student Grades"
+FROM class_information
+GROUP BY teacher_id, teacher
+ORDER BY AVG("Student Grade") LIMIT 5;
