@@ -19,7 +19,7 @@ FROM student
 WHERE average_grade >= 90.00;
 
 /* Get the salutatorian */
-SELECT CONCAT(first_name, ' ', last_name)
+SELECT CONCAT(first_name, ' ', last_name) AS "Salutatorian"
 FROM student
 ORDER BY average_grade DESC
 LIMIT 1 OFFSET 1;
