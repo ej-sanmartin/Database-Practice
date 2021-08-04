@@ -86,18 +86,32 @@ ALTER SEQUENCE course_table_id OWNED BY course.id;
 ALTER SEQUENCE class_table_id OWNED BY class.id;
 ALTER SEQUENCE grade_table_id OWNED BY grade.id;
 
-/* Convenience View that joins Student, Class, and Grade Tables */
-CREATE VIEW student_class_information AS
+/* Convenience Views */
+CREATE VIEW class_information AS
+  SELECT
+    CONCAT(s.first_name, ' ', s.last_name) AS student,
+    CONCAT(t.first_name, ' ', t.last_name) AS teacher,
+    o.title AS "Course Title",
+    o.subject AS "Course Subject",
+    g.grade AS "Student Grade"
+  FROM class c
+  INNER JOIN student s ON c.student_id = s.id
+  INNER JOIN teacher t ON c.teacher_id = t.id
+  INNER JOIN course o ON c.course_id = o.id
+  INNER JOIN grade g ON g.class_id = c.id;
+  
+CREATE VIEW student_data AS
   SELECT
     s.id AS student_id,
-    g.id AS grade_id,
-    c.id AS class_id,
+    CONCAT(s.first_name, ' ', s.last_name) AS student,
     g.grade AS student_grade,
-    o.title AS student_course_name
-  FROM student s
-  INNER JOIN grade g ON s.id = g.student_id
-  INNER JOIN class c ON s.id = c.student_id
-  INNER JOIN course o ON o.id = c.course_id;
+    c.teacher_id AS teacher_id,
+    o.title AS course_name,
+    o.subject AS course_subject
+  FROM grade g
+  INNER JOIN student s ON g.student_id = s.id
+  INNER JOIN class c ON g.class_id = c.id
+  INNER JOIN course o ON c.course_id = o.id;
 
 
 /* Populates tables with mock data to test queries on */
