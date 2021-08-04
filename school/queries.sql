@@ -9,12 +9,39 @@ SELECT * FROM grade;
 SELECT * FROM class_information;
 SELECT * FROM student_date;
 
+/* Get the entire school's average grade */
+SELECT CAST(AVG(average_grade) AS DECIMAL(5, 2)) AS "School's Average"
+FROM student;
+
+/* Get the amount of students who have an above A- Average */
+SELECT COUNT(id)
+FROM student
+WHERE average_grade >= 90.00;
+
+/* Get the salutatorian */
+SELECT CONCAT(first_name, ' ', last_name)
+FROM student
+ORDER BY average_grade DESC
+LIMIT 1 OFFSET 1;
+
 /* Get all teachers and order them from oldest to newly hired */
 SELECT
   CONCAT(first_name, ' ', last_name) AS Teacher,
   start_date
 FROM teacher
 ORDER BY start_date;
+
+/* Get all teachers who started working in the 2000s */
+SELECT
+  CONCAT(first_name, ' ', last_name) AS "Teacher",
+  start_date
+FROM teacher
+WHERE start_date BETWEEN '2000-01-01' AND '2009-12-31';
+
+/* Get all teachers with a yahoo email account */
+SELECT CONCAT(first_name, ' ', last_name) AS "Teacher", email
+FROM teacher
+WHERE email LIKE '%yahoo.com';
 
 /* Get number of classes each teacher teaches */
 SELECT DISTINCT
@@ -66,3 +93,14 @@ SELECT
 FROM class_information
 GROUP BY teacher_id, teacher
 ORDER BY AVG("Student Grade") LIMIT 5;
+
+/* Get the average grade in every course removing outliers, specifically the highest grade per course */
+/* Challenge, do it on a per CLASS basis instead of whole course */
+SELECT "Course Title", AVG("Student Grade")
+FROM class_information c
+INNER JOIN (SELECT "Course Title" AS course, MAX("Student Grade") AS max_grade
+            FROM class_information
+            GROUP BY "Course Title") o
+ON o.max_grade != c."Student Grade" AND o.course = c."Course Title"
+GROUP BY "Course Title"
+ORDER BY "Course Title"
