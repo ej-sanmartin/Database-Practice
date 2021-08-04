@@ -6,6 +6,13 @@ DROP TABLE IF EXISTS course;
 DROP TABLE IF EXISTS class;
 DROP TABLE IF EXISTS grade;
 
+/* Sequences for auto incrementing IDs */
+CREATE SEQUENCE student_table_id;
+CREATE SEQUENCE course_table_id;
+CREATE SEQUENCE teacher_table_id;
+CREATE SEQUENCE class_table_id;
+CREATE SEQUENCE grade_table_id;
+
 /* Creates Student, Teacher, Course, and Class Table */
 /*
   School Year Code
@@ -16,7 +23,7 @@ DROP TABLE IF EXISTS grade;
   S - Senior
 */
 CREATE TABLE student(
-  id SERIAL,
+  id INTEGER DEFAULT NEXTVAL('student_table_id'),
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
   school_year CHARACTER NOT NULL,
@@ -26,7 +33,7 @@ CREATE TABLE student(
 );
 
 CREATE TABLE teacher(
-  id SERIAL,
+  id INTEGER DEFAULT NEXTVAL('teacher_table_id'),
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
@@ -45,17 +52,17 @@ CREATE TABLE teacher(
   V - Visual Arts
 */
 CREATE TABLE course(
-  id SERIAL,
+  id INTEGER DEFAULT NEXTVAL('course_table_id'),
   title VARCHAR(255) NOT NULL UNIQUE,
   subject CHARACTER NOT NULL,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE class(
-  id SERIAL,
-  student_id SERIAL NOT NULL,
-  teacher_id SERIAL NOT NULL,
-  course_id SERIAL NOT NULL,
+  id INTEGER DEFAULT NEXTVAL('class_table_id'),
+  student_id INTEGER NOT NULL,
+  teacher_id INTEGER NOT NULL,
+  course_id INTEGER NOT NULL,
   FOREIGN KEY (student_id) REFERENCES student(id) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (teacher_id) REFERENCES teacher(id) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (course_id) REFERENCES course(id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -63,14 +70,34 @@ CREATE TABLE class(
 );
 
 CREATE TABLE grade(
-  id SERIAL,
-  student_id SERIAL NOT NULL,
-  class_id SERIAL NOT NULL,
-  grade DECIMAL DEFAULT 0,
+  id INTEGER DEFAULT NEXTVAL('grade_table_id'),
+  student_id INTEGER NOT NULL,
+  class_id INTEGER NOT NULL,
+  grade DECIMAL (5, 2) DEFAULT 0.00,
   FOREIGN KEY (student_id) REFERENCES student(id) ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (class_id) REFERENCES class(id) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY(id)
 );
+
+/* Connects sequences for auto incrementing with corresponding table IDs */
+ALTER SEQUENCE student_table_id OWNED BY student.id;
+ALTER SEQUENCE teacher_table_id OWNED BY teacher.id;
+ALTER SEQUENCE course_table_id OWNED BY course.id;
+ALTER SEQUENCE class_table_id OWNED BY class.id;
+ALTER SEQUENCE grade_table_id OWNED BY grade.id;
+
+/* Convenience View that joins Student, Class, and Grade Tables */
+CREATE VIEW student_class_information AS
+  SELECT
+    s.id AS student_id,
+    g.id AS grade_id,
+    c.id AS class_id,
+    g.grade AS student_grade,
+    o.title AS student_course_name
+  FROM student s
+  INNER JOIN grade g ON s.id = g.student_id
+  INNER JOIN class c ON s.id = c.student_id
+  INNER JOIN course o ON o.id = c.course_id;
 
 
 /* Populates tables with mock data to test queries on */
