@@ -5,8 +5,16 @@ SELECT * FROM course;
 SELECT * FROM class;
 SELECT * FROM grade;
 
-/* See output of View */
-SELECT * FROM student_class_information;
+/* See output of Views */
+SELECT * FROM class_information;
+SELECT * FROM student_date;
+
+/* Get all teachers and order them from oldest to newly hired */
+SELECT
+  CONCAT(first_name, ' ', last_name) AS Teacher,
+  start_date
+FROM teacher
+ORDER BY start_date;
 
 /* Get number of classes each teacher teaches */
 SELECT DISTINCT
