@@ -48,7 +48,7 @@ School Year Code | Subject Code
 * Slight optimization, make first_name and last_name columns not have Varchar set to 255, unlikely name would fill all of that space
 * connect to a frontend and backend site
   * Backend handles communicating with database, frontend would be a dashboard to add and remove items from various tables
-
+* Add trigger to update average_grade in student table by calculating when grade table updated
 
 ## Constributors
 
