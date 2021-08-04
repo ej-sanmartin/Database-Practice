@@ -113,34 +113,33 @@ CREATE VIEW student_data AS
   INNER JOIN class c ON g.class_id = c.id
   INNER JOIN course o ON c.course_id = o.id;
 
-
 /* Populates tables with mock data to test queries on */
-INSERT INTO student (first_name, last_name, school_year, birth_date)
-VALUES ('Douglass', 'Walter', 'L', '2005-07-24'),
-       ('Jake', 'Stein', 'F', '2007-11-18'),
-       ('Shamus', 'Letty', 'S', '2004-06-20'),
-       ('Sarah', 'Miller', 'F', '2007-12-12'),
-       ('Michael', 'Hall', 'L', '2006-03-19'),
-       ('Tracy', 'Centerson', 'S', '2004-09-15'),
-       ('Jane', 'Foster', 'J', '2006-05-02'),
-       ('John', 'Dressler', 'F', '2007-10-01'),
-       ('Maple', 'Kingsley', 'S', '2003-04-17'),
-       ('Hunter', 'Lane', 'S', '2004-06-28'),
-       ('Vivi', 'Nguyen', 'J', '2006-01-11'),
-       ('Cindy', 'Turner', 'F', '2007-10-24'),
-       ('Zach', 'Zoo', 'J', '2006-08-29'),
-       ('Jackson', 'Baker', 'F', '2004-02-05'),
-       ('Penelope', 'Mye', 'S', '2003-06-11'),
-       ('Jared', 'Nixon', 'L', '2006-07-05'),
-       ('Nolan', 'Porter', 'L', '2006-04-19'),
-       ('Kasie', 'Renner', 'F', '2007-12-01'),
-       ('Mason', 'Gutierrez', 'L', '2005-04-04'),
-       ('Jorge', 'Rodriguez', 'L', '2005-02-25'),
-       ('Nina', 'Santos', 'F', '2007-01-21'),
-       ('Christopher', 'Weathermen', 'L', '2005-10-15'),
-       ('Ivan', 'Nolksy', 'J', '2005-03-13'),
-       ('Tanner', 'Warren', 'F', '2007-05-06'),
-       ('Clementine', 'Avery', 'S', '2004-11-29');
+INSERT INTO student (first_name, last_name, school_year, birth_date, average_grade)
+VALUES ('Douglass', 'Walter', 'L', '2005-07-24', 84.17),
+       ('Jake', 'Stein', 'F', '2007-11-18', 87.60),
+       ('Shamus', 'Letty', 'S', '2004-06-20', 92.33),
+       ('Sarah', 'Miller', 'F', '2007-12-12', 96.00),
+       ('Michael', 'Hall', 'L', '2006-03-19', 82.17),
+       ('Tracy', 'Centerson', 'S', '2004-09-15', 95.83),
+       ('Jane', 'Foster', 'J', '2006-05-02', 86.00),
+       ('John', 'Dressler', 'F', '2007-10-01', 80.60),
+       ('Maple', 'Kingsley', 'S', '2003-04-17', 83.33),
+       ('Hunter', 'Lane', 'S', '2004-06-28', 85.33),
+       ('Vivi', 'Nguyen', 'J', '2006-01-11', 96.50),
+       ('Cindy', 'Turner', 'F', '2007-10-24', 87.33),
+       ('Zach', 'Zoo', 'J', '2006-08-29', 85.66),
+       ('Jackson', 'Baker', 'F', '2004-02-05', 96.17),
+       ('Penelope', 'Mye', 'S', '2003-06-11', 88.67),
+       ('Jared', 'Nixon', 'L', '2006-07-05', 81.50),
+       ('Nolan', 'Porter', 'L', '2006-04-19', 91.00),
+       ('Kasie', 'Renner', 'F', '2007-12-01', 89.33),
+       ('Mason', 'Gutierrez', 'L', '2005-04-04', 84.33),
+       ('Jorge', 'Rodriguez', 'L', '2005-02-25', 86.33),
+       ('Nina', 'Santos', 'F', '2007-01-21', 76.00),
+       ('Christopher', 'Weathermen', 'L', '2005-10-15', 96.00),
+       ('Ivan', 'Nolksy', 'J', '2005-03-13', 93.50),
+       ('Tanner', 'Warren', 'F', '2007-05-06', 79.67),
+       ('Clementine', 'Avery', 'S', '2004-11-29', 92.83);
 
 INSERT INTO teacher (first_name, last_name, email, start_date)
 VALUES ('Dean', 'Laymen', 'dlaymen@hotmail.com', '2000-09-01'),
