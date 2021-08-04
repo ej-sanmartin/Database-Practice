@@ -11,6 +11,11 @@ Also has data for students grades on a corresponding class. Queries and table cr
 Practicing my SQL skillz.
 
 
+## SQL Version/ Specifics
+
+* PostgreSQL 9.6
+
+
 ## Tables
 
 Note: Nearly all values are required and constraints are set to NOT NULL
